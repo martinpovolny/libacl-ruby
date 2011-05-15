@@ -1,0 +1,15 @@
+have_library: checking for acl_get_file() in -lacl... -------------------- yes
+
+"gcc -o conftest -I. -I/usr/lib/ruby/1.8/i386-linux  -Wall -g -O2  -fPIC conftest.c  -L"/usr/lib"      -lruby1.8-static -lacl  -lpthread -ldl -lcrypt -lm   -lc"
+conftest.c: In function `t':
+conftest.c:4: warning: implicit declaration of function `acl_get_file'
+checked program was:
+/* begin */
+
+/*top*/
+int main() { return 0; }
+int t() { acl_get_file(); return 0; }
+/* end */
+
+--------------------
+

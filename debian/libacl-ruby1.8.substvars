@@ -1,0 +1,1 @@
+shlibs:Depends=libacl1 (>= 2.2.11-1), libc6 (>= 2.3.2.ds1-21), libruby1.8 (>= 1.8.4)

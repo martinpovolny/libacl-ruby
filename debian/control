@@ -1,0 +1,13 @@
+Source: libacl-ruby
+Section: unknown
+Priority: optional
+Maintainer: unknown <martin.povolny@solnet.cz>
+Build-Depends: debhelper (>> 3.0.0)
+Standards-Version: 3.5.2
+
+Package: libacl-ruby1.8
+Architecture: any
+Depends: ${shlibs:Depends}, ruby1.8
+Description: POSIX ACL library for ruby.
+ Ruby interface to acl_* functions. See acl(5) for details.
+

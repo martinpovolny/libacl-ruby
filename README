@@ -1,0 +1,14 @@
+ACL -- Ruby bindings for POSIX ACL
+----------------------------------
+author: martin.povolny@solnet.cz
+
+Building the library:
+  cd acl
+  ruby extconf.rb
+  make
+
+Building RDoc documentation:
+  cd acl
+  make doc
+
+See acl/t/test.rb for usage examples.
