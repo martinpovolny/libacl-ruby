@@ -103,7 +103,7 @@ VALUE ruby_acl_new(int argc, VALUE *argv, VALUE class) {
  */
 VALUE ruby_acl_from_text(VALUE class, VALUE text) {
   acl_t acl;
-  if (NULL == (acl = acl_from_text( STR2CSTR(text) ))) {
+  if (NULL == (acl = acl_from_text( StringValuePtr(text) ))) {
     rb_sys_fail("acl_from_text returned error");
   }
   return Data_Wrap_Struct( class, 0, ruby_acl_free, acl );
@@ -118,7 +118,7 @@ VALUE ruby_acl_from_file_fd(VALUE class, VALUE file) {
     acl = acl_get_fd( FIX2INT(file) );
     if ((acl_t)NULL==acl) rb_sys_fail("acl_get_fd failed");
   } else {
-    acl = acl_get_file( STR2CSTR(file), ACL_TYPE_ACCESS );
+    acl = acl_get_file( StringValuePtr(file), ACL_TYPE_ACCESS );
     if ((acl_t)NULL==acl) rb_sys_fail("acl_get_file failed");
   }
   return Data_Wrap_Struct( class, 0, ruby_acl_free, acl );
@@ -129,7 +129,7 @@ VALUE ruby_acl_from_file_fd(VALUE class, VALUE file) {
  */
 VALUE ruby_acl_from_file_default(VALUE class, VALUE dir) {
   acl_t acl;
-  acl = acl_get_file( STR2CSTR(dir), ACL_TYPE_DEFAULT );
+  acl = acl_get_file( StringValuePtr(dir), ACL_TYPE_DEFAULT );
   if ((acl_t)NULL==acl) rb_sys_fail("acl_get_file failed");
   return Data_Wrap_Struct( class, 0, ruby_acl_free, acl );
 }
@@ -148,7 +148,7 @@ VALUE ruby_acl_set_file( VALUE self, VALUE file ) {
     }
   } else {
     //if (0 != acl_set_file( StringValueCStr(file), ACL_TYPE_ACCESS, acl ) ) {
-    if (0 != acl_set_file( STR2CSTR(file), ACL_TYPE_ACCESS, acl ) ) {
+    if (0 != acl_set_file( StringValuePtr(file), ACL_TYPE_ACCESS, acl ) ) {
         rb_sys_fail("acl_set_file (ACCESS ACL) failed");
     }
   }
@@ -162,7 +162,7 @@ VALUE ruby_acl_set_default( VALUE self, VALUE dir ) {
   acl_t acl;
   
   Data_Get_Struct_ex( self, acl_t, acl );
-  if (0 != acl_set_file( STR2CSTR(dir), ACL_TYPE_DEFAULT, acl ) ) {
+  if (0 != acl_set_file( StringValuePtr(dir), ACL_TYPE_DEFAULT, acl ) ) {
         rb_sys_fail("acl_set_file (DEFAULT ACL) failed");
   }
   return self;

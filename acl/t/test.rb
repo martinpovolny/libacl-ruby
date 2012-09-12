@@ -1,6 +1,6 @@
 require "acl"
 require "test/unit"
-require "ftools"
+require "fileutils"
 
 class ACLTest < Test::Unit::TestCase
   TEST_PATH='/tmp/rtest'
@@ -59,7 +59,7 @@ class ACLTest < Test::Unit::TestCase
   def test_set
     acl = ACL.from_file(TEST_PATH)
     fname = File.join(TEST_PATH,'test')
-    File.mkpath(fname)
+    FileUtils.mkpath(fname)
 
     entry = acl.create_entry
     entry.tag_type  = ACL::ACL_USER
@@ -82,5 +82,5 @@ class ACLTest < Test::Unit::TestCase
 
 end
 
-File.mkpath(ACLTest::TEST_PATH)
+FileUtils.mkpath(ACLTest::TEST_PATH)
 
