@@ -20,6 +20,9 @@ Gem::Specification.new do |s|
   #s.executables   = `git ls-files -- bin/*`.split("\n").map{|f| File.basename(f)}
 
   #s.add_dependency('fileutils')
+  s.has_rdoc = true
+  s.extra_rdoc_files = ['ext/acl/acl.c']
+
   
   s.require_paths = ["lib"]
 end
